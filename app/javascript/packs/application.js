@@ -10,6 +10,7 @@ require("channels")
 
 import TurbolinksAdapter from 'vue-turbolinks'
 import Vue from 'vue'
+import Vuex from 'vuex'
 import * as instances from '../instances'
 
 Vue.use(TurbolinksAdapter)
