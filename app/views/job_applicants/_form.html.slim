@@ -1,0 +1,21 @@
+= form_for @job_applicant do |f|
+  - if @job_applicant.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@job_applicant.errors.count, "error")} prohibited this job_applicant from being saved:"
+      ul
+        - @job_applicant.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :phone
+    = f.text_field :phone
+  .field
+    = f.label :specialization
+    = f.text_field :specialization
+  .field
+    = f.label :work_experience
+    = f.text_field :work_experience
+  .field
+    = f.label :other
+    = f.text_field :other
+  .actions = f.submit
