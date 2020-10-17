@@ -1,28 +1,20 @@
 class JobApplicantsController < ApplicationController
   before_action :set_job_applicant, only: [:show, :edit, :update, :destroy]
 
-  # GET /job_applicants
-  # GET /job_applicants.json
   def index
     @job_applicants = JobApplicant.all
   end
 
-  # GET /job_applicants/1
-  # GET /job_applicants/1.json
   def show
   end
 
-  # GET /job_applicants/new
   def new
     @job_applicant = JobApplicant.new
   end
 
-  # GET /job_applicants/1/edit
   def edit
   end
 
-  # POST /job_applicants
-  # POST /job_applicants.json
   def create
     @job_applicant = JobApplicant.new(job_applicant_params)
 
@@ -37,8 +29,6 @@ class JobApplicantsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /job_applicants/1
-  # PATCH/PUT /job_applicants/1.json
   def update
     respond_to do |format|
       if @job_applicant.update(job_applicant_params)
@@ -51,8 +41,6 @@ class JobApplicantsController < ApplicationController
     end
   end
 
-  # DELETE /job_applicants/1
-  # DELETE /job_applicants/1.json
   def destroy
     @job_applicant.destroy
     respond_to do |format|
