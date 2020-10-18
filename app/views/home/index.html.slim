@@ -1,0 +1,13 @@
+- if user_signed_in?
+  h1
+    | Bienvenido 
+    = current_user.first_name
+  h2
+    | Email 
+    = current_user.email
+  h3
+    | Rut 
+    = current_user.rut
+    | -
+    = current_user.dv
+  h1 SCGR

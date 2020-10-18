@@ -11,5 +11,22 @@
 
   <body>
     <%= yield %>
+    <p class="notice"><%= notice %></p>
+    <p class="alert"><%= alert %></p>
+  <ul class="nav justify-content-end">
+    <% unless user_signed_in? %>
+      <li class="nav-item">
+        <%= link_to 'Iniciar', new_user_session_path%>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Registrarse', new_user_registration_path%>
+      </li>
+    <% else %>
+      <li class="nav-item">
+        <%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+      </li>
+    <% end %>
+  </ul>
   </body>
+
 </html>
