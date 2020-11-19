@@ -1,32 +1,39 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>SCGR</title>
+    <title><%= yield(:title) %>SCGR</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag 'application', media: 'all' %>
+    <%= favicon_link_tag asset_path('favicon.png') %>
+    <%= yield :head_javascript %>
+
   </head>
 
-  <body>
-    <%= yield %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-  <ul class="nav justify-content-end">
-    <% unless user_signed_in? %>
-      <li class="nav-item">
-        <%= link_to 'Iniciar', new_user_session_path%>
-      </li>
-      <li class="nav-item">
-        <%= link_to 'Registrarse', new_user_registration_path%>
-      </li>
-    <% else %>
-      <li class="nav-item">
-        <%= link_to 'Salir', destroy_user_session_path, method: :delete %>
-      </li>
-    <% end %>
-  </ul>
+  <body id="page-top" class="sidebar-toggled">
+    <div id="wrapper">
+    <% if user_signed_in?%>
+        <%= render partial: 'layouts/navbar' %>
+        <div id="content-wrapper" class="d-flex flex-column">
+        </div>
+      </div>
+      <%= render partial: 'layouts/footer' %>
+      <%= yield %>
+    <%else %>
+      <h1>HOLA</h1>
+      <ul class="hmenu">
+        <%= render 'devise/menu/registration_items' %>
+        <%= render 'devise/menu/login_items' %>
+      </ul>
+      <%= yield %>
+    <%end%>
+    
+    <script>
+      <%= yield :javascript %>
+    </script>
   </body>
 
 </html>

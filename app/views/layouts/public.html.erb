@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SCGR</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= include_gon %>
+  </head>
+  <body id="page-top">
+    <div id="wrapper"  > 
+
+      <div id="content-wrapper">
+        <div id="content">
+          <div id="<%= 'app' if vue?(controller_name) %>" class="container-fluid">
+
+            <% flash.each do |key, value| %>
+              <div class="alert alert-<%= key %>"><%= value %></div>
+            <% end %>
+            <%= yield %>
+          </div>
+        </div>
+         <%= render partial: 'layouts/footer' %>
+      </div>
+    </div>
+    </body>
+</html>
