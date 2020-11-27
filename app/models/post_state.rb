@@ -1,0 +1,2 @@
+class PostState < ApplicationRecord
+end

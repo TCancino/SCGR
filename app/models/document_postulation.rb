@@ -1,0 +1,2 @@
+class DocumentPostulation < ApplicationRecord
+end

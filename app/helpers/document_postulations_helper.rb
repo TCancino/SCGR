@@ -1,0 +1,2 @@
+module DocumentPostulationsHelper
+end

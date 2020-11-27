@@ -1,0 +1,19 @@
+h1 Listing postulations
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @postulations.each do |postulation|
+      tr
+        td = link_to 'Show', postulation
+        td = link_to 'Edit', edit_postulation_path(postulation)
+        td = link_to 'Destroy', postulation, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Postulation', new_postulation_path
