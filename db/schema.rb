@@ -10,14 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_17_033011) do
+ActiveRecord::Schema.define(version: 2020_11_30_025831) do
 
-  create_table "job_applicants", force: :cascade do |t|
-    t.bigint "phone"
-    t.string "specialization"
-    t.string "work_experience"
-    t.string "other"
-    t.string "degree"
+  create_table "documents", force: :cascade do |t|
+    t.string "name"
+    t.string "link"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "documents_postulations", id: false, force: :cascade do |t|
+    t.integer "document_id", null: false
+    t.integer "postulation_id", null: false
+  end
+
+  create_table "post_states", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "posts", force: :cascade do |t|
+    t.string "name"
+    t.string "requirements"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "post_state_id", null: false
+    t.index ["post_state_id"], name: "index_posts_on_post_state_id"
+  end
+
+  create_table "postulation_states", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "postulations", force: :cascade do |t|
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "post_id", null: false
+    t.integer "postulation_state_id", null: false
+    t.index ["post_id"], name: "index_postulations_on_post_id"
+    t.index ["postulation_state_id"], name: "index_postulations_on_postulation_state_id"
+  end
+
+  create_table "user_types", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -34,8 +72,12 @@ ActiveRecord::Schema.define(version: 2020_10_17_033011) do
     t.string "dv"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "state"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "posts", "post_states"
+  add_foreign_key "postulations", "posts"
+  add_foreign_key "postulations", "postulation_states"
 end

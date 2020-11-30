@@ -1,0 +1,9 @@
+= form_for @document_postulation do |f|
+  - if @document_postulation.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@document_postulation.errors.count, "error")} prohibited this document_postulation from being saved:"
+      ul
+        - @document_postulation.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit

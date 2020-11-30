@@ -1,0 +1,19 @@
+h1 Listing document_postulations
+
+table
+  thead
+    tr
+      th
+      th
+      th
+
+  tbody
+    - @document_postulations.each do |document_postulation|
+      tr
+        td = link_to 'Show', document_postulation
+        td = link_to 'Edit', edit_document_postulation_path(document_postulation)
+        td = link_to 'Destroy', document_postulation, data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+= link_to 'New Document postulation', new_document_postulation_path

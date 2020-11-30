@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :postulations
+  resources :document_postulations
+  resources :posts
+  resources :documents
   devise_for :users
 
   devise_scope :user do

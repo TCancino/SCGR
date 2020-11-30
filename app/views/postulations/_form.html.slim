@@ -1,0 +1,9 @@
+= form_for @postulation do |f|
+  - if @postulation.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@postulation.errors.count, "error")} prohibited this postulation from being saved:"
+      ul
+        - @postulation.errors.full_messages.each do |message|
+          li = message
+
+  .actions = f.submit
