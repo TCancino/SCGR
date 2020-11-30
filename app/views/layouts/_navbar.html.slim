@@ -8,26 +8,47 @@ html[lang="en" dir="ltr"]
     link[rel="stylesheet" href="style.css"]
     link[rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"]
     script[src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"]
-
   body
-    input type="checkbox" id="check"
+    input[type="checkbox" id="check"]
     header
-      label for="check"
-        i class="fas fa-bars" id="sidebar_btn"
-      div class="left_area"
+      label[for="check"]
+        i[class="fas fa-bars" id="sidebar_btn"]
+      div[class="left_area"]
         h3
           | SC
           span
             | GR
-      = link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do
-        i[class=" logout_btn"]
-            | Cerrar sesión
-        
+      div[class="right_area"]
+        = link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do
+          i[class="logout_btn"]
+              | Cerrar sesión
     div[class="mobile_nav"]
       div[class="nav_bar"]
         img[src="1.png" class="mobile_profile_image" alt=""]
-        i[class="fa fa-bars nav_btn"]
+          i[class="fa fa-bars nav_btn"]
+      div[class="mobile_nav_items"]
+        a[href="#"]
+          i[class="fas fa-desktop"]
+            span
+              |  Ofertas de Trabajo
+        a href="#"
+          i class="fas fa-user-tie"
+            span
+              |  Postulantes
+        a href="#"
+          i class="fas fa-tasks"
+            span
+              |  Evaluar
+        a href="#"
+          i class="fas fa-th"
+        a href="#"
+          i class="fas fa-info-circle"
+        a href="#"
+          i class="fas fa-sliders-h"
     div[class="sidebar"]
+      div[class="profile_info"]
+        div[class="profile_image" alt=""]
+          h1 USER
       a[href="#"]
         i[class="fas fa-desktop"]
           span
@@ -46,7 +67,7 @@ html[lang="en" dir="ltr"]
         i class="fas fa-info-circle"
       a href="#"
         i class="fas fa-sliders-h"
-    div class="content"
+
 javascript:
   $(document).ready(function(){
     $('.nav_btn').click(function(){
