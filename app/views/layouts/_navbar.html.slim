@@ -49,24 +49,28 @@ html[lang="en" dir="ltr"]
       div[class="profile_info"]
         div[class="profile_image" alt=""]
           h1 #{current_user.first_name}
-      a[href="#"]
+      a[href="#1"]
         i[class="fas fa-desktop"]
           span
             |  Ofertas de Trabajo
-      a href="#"
+      a href="#2"
         i class="fas fa-user-tie"
           span
             |  Postulantes
-      a href="#"
+      a href="#3"
         i class="fas fa-tasks"
           span
             |  Evaluar
-      a href="#"
+      a href="#4"
         i class="fas fa-th"
-      a href="#"
+      a href="#5"
         i class="fas fa-info-circle"
-      a href="#"
-        i class="fas fa-sliders-h"
+      / a href="#6"
+      /   i class="fas fa-sliders-h"
+      a href="posts"
+        li =  link_to 'Posts', posts_path
+      a href="postulations"
+        li = link_to 'Postulations', postulations_path
 
 javascript:
   $(document).ready(function(){
