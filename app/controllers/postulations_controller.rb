@@ -10,6 +10,7 @@ class PostulationsController < ApplicationController
   # GET /postulations/1
   # GET /postulations/1.json
   def show
+    @postulation = Postulation.find(params[:id])
   end
 
   # GET /postulations/new
