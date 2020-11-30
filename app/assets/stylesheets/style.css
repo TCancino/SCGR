@@ -65,6 +65,7 @@ header{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  color: #ccc;
 }
 
 .sidebar .profile_info .profile_image{
