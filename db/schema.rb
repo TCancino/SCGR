@@ -24,16 +24,6 @@ ActiveRecord::Schema.define(version: 2020_11_30_025831) do
     t.integer "postulation_id", null: false
   end
 
-  create_table "job_applicants", force: :cascade do |t|
-    t.bigint "phone"
-    t.string "specialization"
-    t.string "work_experience"
-    t.string "other"
-    t.string "degree"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "post_states", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
