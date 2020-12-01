@@ -25,7 +25,8 @@ class PostulationsController < ApplicationController
   # POST /postulations
   # POST /postulations.json
   def create
-    @postulation = Postulation.new(postulation_params)
+    #postulation_params
+    @postulation = Postulation.new(postulation_state_id: 1) #1-> No Revisado
 
     respond_to do |format|
       if @postulation.save
