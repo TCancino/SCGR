@@ -1,23 +1,23 @@
-h1 Listing posts
+h1 Ofertas de Trabajo
 
 table
   thead
     tr
-      th |  Name
-      th |  Requirements
-      th |  'Show'
-      th |  'Edit'
-      th |  'Destroy'
+      th |  Oferta
+      th |  Requerimientos
+      th |  'Mostrar Detalles'
+      th |  'Editar'
+      th |  'Destruir'
 
   tbody
     - @posts.each do |post|
       tr
         td = post.name
         td = post.requirements
-        td = link_to 'Show', post
-        td = link_to 'Edit', edit_post_path(post)
-        td = link_to 'Destroy', post, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to 'Mostrar Detalles', post
+        td = link_to 'Editar', edit_post_path(post)
+        td = link_to 'Destruir', post, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
-= link_to 'New Post', new_post_path
+= link_to 'Crear Oferta de Trabajo', new_post_path
