@@ -11,6 +11,10 @@ class PostsController < ApplicationController
   # GET /posts/1.json
   def show
     @post = Post.find(params[:id])
+    id = @post.id
+    post_state = @post.post_state_id
+    @state = PostState.find(post_state)
+    @postulations = Postulation.find_by(post_id: id)
   end
 
   # GET /posts/new
@@ -25,7 +29,10 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params)
+    #today = Date.today
+    post_name = post_params[:name]
+    post_requirements = post_params[:requirements]
+    @post = Post.new(name: post_name, requirements: post_requirements, post_state_id: 4)
 
     respond_to do |format|
       if @post.save
