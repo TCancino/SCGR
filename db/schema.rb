@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_025831) do
+ActiveRecord::Schema.define(version: 2020_12_01_011023) do
 
   create_table "documents", force: :cascade do |t|
     t.string "name"
     t.string "link"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id", null: false
+    t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
   create_table "documents_postulations", id: false, force: :cascade do |t|
@@ -46,6 +48,7 @@ ActiveRecord::Schema.define(version: 2020_11_30_025831) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "post_state_id", null: false
+    t.integer "vacancies"
     t.index ["post_state_id"], name: "index_posts_on_post_state_id"
   end
 
@@ -60,8 +63,10 @@ ActiveRecord::Schema.define(version: 2020_11_30_025831) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "post_id", null: false
     t.integer "postulation_state_id", null: false
+    t.integer "user_id", null: false
     t.index ["post_id"], name: "index_postulations_on_post_id"
     t.index ["postulation_state_id"], name: "index_postulations_on_postulation_state_id"
+    t.index ["user_id"], name: "index_postulations_on_user_id"
   end
 
   create_table "user_types", force: :cascade do |t|
@@ -83,11 +88,16 @@ ActiveRecord::Schema.define(version: 2020_11_30_025831) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "state"
+    t.integer "user_type_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["user_type_id"], name: "index_users_on_user_type_id"
   end
 
+  add_foreign_key "documents", "users"
   add_foreign_key "posts", "post_states"
   add_foreign_key "postulations", "posts"
   add_foreign_key "postulations", "postulation_states"
+  add_foreign_key "postulations", "users"
+  add_foreign_key "users", "user_types"
 end
