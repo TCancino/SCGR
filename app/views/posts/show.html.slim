@@ -15,20 +15,23 @@ table
     tr
       th |  Postulante
       th |  Estado Postulacion
-      th |  'Show'
-      /th |  'Edit'
-      th |  'Destroy'
+      th |  'Detalles'
+      th |  'Editar'
+      th |  'Destruir'
 
   tbody
     - for i in (0..@how_many-1)
       tr
         td = @users_names[i]
         td = @postulations_states[i]
-        td = link_to 'Show', @postulations[i]
-        /td = link_to 'Edit', edit_postulation_path(@postulations[i])
-        td = link_to 'Destroy', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to 'Mostrar Detalles', @postulations[i]
+        td = link_to 'Editar', edit_postulation_path(@postulations[i].id)
+        td = link_to 'Destruir', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
 
 br
-=> link_to 'Edit', edit_post_path(@post)
+
+=> link_to 'Postular', new_document_path()
 '|
-=< link_to 'Back', posts_path
+=> link_to 'Editar', edit_post_path(@post)
+'|
+=< link_to 'Atras', posts_path
