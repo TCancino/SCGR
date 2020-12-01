@@ -10,6 +10,25 @@ p
   strong State:
   = @state.name
 
+table
+  thead
+    tr
+      th |  Postulante
+      th |  Estado Postulacion
+      th |  'Show'
+      /th |  'Edit'
+      th |  'Destroy'
+
+  tbody
+    - for i in (0..@how_many-1)
+      tr
+        td = @users_names[i]
+        td = @postulations_states[i]
+        td = link_to 'Show', @postulations[i]
+        /td = link_to 'Edit', edit_postulation_path(@postulations[i])
+        td = link_to 'Destroy', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
+
+br
 => link_to 'Edit', edit_post_path(@post)
 '|
 =< link_to 'Back', posts_path
