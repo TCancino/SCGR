@@ -14,7 +14,22 @@ class PostsController < ApplicationController
     id = @post.id
     post_state = @post.post_state_id
     @state = PostState.find(post_state)
-    @postulations = Postulation.find_by(post_id: id)
+    postulations = Postulation.all
+    @postulations = []
+    @users_names = []
+    @postulations_states = []
+    @how_many = 0
+    for postulation in postulations
+      if postulation.post_id == id
+        @postulations.append(postulation)
+        user = User.find(postulation.user_id)
+        user_name = user.first_name + " " + user.last_name
+        @users_names.append(user_name)
+        postulation_state = PostulationState.find(postulation.postulation_state_id)
+        @postulations_states.append(postulation_state.name)
+        @how_many = @how_many + 1
+      end
+    end
   end
 
   # GET /posts/new
@@ -32,7 +47,7 @@ class PostsController < ApplicationController
     #today = Date.today
     post_name = post_params[:name]
     post_requirements = post_params[:requirements]
-    @post = Post.new(name: post_name, requirements: post_requirements, post_state_id: 4)
+    @post = Post.new(name: post_name, requirements: post_requirements, post_state_id: 2) #2-> Abajo
 
     respond_to do |format|
       if @post.save
