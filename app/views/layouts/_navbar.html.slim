@@ -49,10 +49,13 @@ html[lang="en" dir="ltr"]
       div[class="profile_info"]
         div[class="profile_image" alt=""]
           h1 #{current_user.first_name}
-      a href="posts"
+      /a href="posts"
         i[class="fas fa-desktop"]  Ofertas de Trabajo
         = link_to ' ', posts_path
 
+      a href="posts"
+        li = link_to 'Ofertas de Trabajo', posts_path
+      
       /a href="postulations"
         li = link_to 'Postulations', postulations_path
       /a[href="#1"]
