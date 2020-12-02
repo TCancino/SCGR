@@ -1,0 +1,20 @@
+div[id="editPost#{post.id}" class="modal fade" role="dialog"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h4.modal-title="Editar Postulación"
+        button.close data-dismiss="modal" type="button"
+          |&times;
+      = form_for post do |f|
+        .input-group
+          .input-group-prepend[style="width: 100%"]
+            span.input-group-text[style="width: 100%"]
+              | Nombre:
+          = f.text_field :name, class: 'form-control'
+        .input-group
+          .input-group-prepend[style="width: 100%"]
+            span.input-group-text[style="width: 100%"]
+              | Requerimientos:
+          = f.text_field :requirements, class: 'form-control'
+        = f.submit 'Guardar', class: 'btn btn-success'
+      .modal-footer

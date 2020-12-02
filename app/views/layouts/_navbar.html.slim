@@ -8,6 +8,7 @@ html[lang="en" dir="ltr"]
     link[rel="stylesheet" href="style.css"]
     link[rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css"]
     script[src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" charset="utf-8"]
+    link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
   body
     input[type="checkbox" id="check"]
     header
@@ -24,7 +25,6 @@ html[lang="en" dir="ltr"]
               | Cerrar sesión
     div[class="mobile_nav"]
       div[class="nav_bar"]
-        img[src="1.png" class="mobile_profile_image" alt=""]
           i[class="fa fa-bars nav_btn"]
       div[class="mobile_nav_items"]
         a[href="#"]
@@ -49,13 +49,11 @@ html[lang="en" dir="ltr"]
       div[class="profile_info"]
         div[class="profile_image" alt=""]
           h1 #{current_user.first_name}
-      /a href="posts"
-        i[class="fas fa-desktop"]  Ofertas de Trabajo
-        = link_to ' ', posts_path
+      li class="nav-item"
+        = link_to posts_path, class: "nav-link" do
+          i class="fas fa-desktop"
+          span Ofertas de Tarabajo
 
-      a href="posts"
-        li = link_to 'Ofertas de Trabajo', posts_path
-      
       /a href="postulations"
         li = link_to 'Postulations', postulations_path
       /a[href="#1"]
