@@ -10,7 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_230801) do
+ActiveRecord::Schema.define(version: 2020_12_02_222533) do
+
+  create_table "document_postulations", id: false, force: :cascade do |t|
+    t.integer "document_id", null: false
+    t.integer "postulation_id", null: false
+  end
 
   create_table "documents", force: :cascade do |t|
     t.string "name"
@@ -19,11 +24,6 @@ ActiveRecord::Schema.define(version: 2020_12_01_230801) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id", null: false
     t.index ["user_id"], name: "index_documents_on_user_id"
-  end
-
-  create_table "document_postulations", id: false, force: :cascade do |t|
-    t.integer "document_id", null: false
-    t.integer "postulation_id", null: false
   end
 
   create_table "post_states", force: :cascade do |t|
@@ -39,7 +39,9 @@ ActiveRecord::Schema.define(version: 2020_12_01_230801) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "post_state_id", null: false
     t.integer "vacancies"
+    t.integer "user_id"
     t.index ["post_state_id"], name: "index_posts_on_post_state_id"
+    t.index ["user_id"], name: "index_posts_on_user_id"
   end
 
   create_table "postulation_states", force: :cascade do |t|
@@ -72,13 +74,14 @@ ActiveRecord::Schema.define(version: 2020_12_01_230801) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "state"
-    t.integer "role", default: 0 #0-> Admin, 1-> Consultor, 2->Cliente, 3->Postulante
+    t.integer "role", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "documents", "users"
   add_foreign_key "posts", "post_states"
+  add_foreign_key "posts", "users"
   add_foreign_key "postulations", "posts"
   add_foreign_key "postulations", "postulation_states"
   add_foreign_key "postulations", "users"
