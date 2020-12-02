@@ -10,6 +10,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    @document = Document.find(params[:id])
   end
 
   # GET /documents/new
@@ -24,7 +25,9 @@ class DocumentsController < ApplicationController
   # POST /documents
   # POST /documents.json
   def create
-    @document = Document.new(document_params)
+    doc_name = document_params[:name]
+    doc_file = document_params[:link]
+    @document = Document.new(name: doc_name, link: doc_file, user_id: current_user.id)
 
     respond_to do |format|
       if @document.save
