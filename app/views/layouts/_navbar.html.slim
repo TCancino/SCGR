@@ -53,8 +53,10 @@ html[lang="en" dir="ltr"]
         = link_to posts_path, class: "nav-link" do
           i class="fas fa-desktop"
           span Ofertas de Tarabajo
-      a href="users"
-        li = link_to 'Usuarios', users_path
+      li class="nav-item"
+        = link_to users_path, class: "nav-link" do
+          i class="fas fa-user-tie"
+          span Usuarios
       /a href="postulations"
         li = link_to 'Postulations', postulations_path
       /a[href="#1"]
