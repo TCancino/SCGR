@@ -5,4 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :documents
   has_many :postulations
+  has_many :posts
 end
