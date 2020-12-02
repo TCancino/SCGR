@@ -21,7 +21,7 @@ ActiveRecord::Schema.define(version: 2020_12_01_230801) do
     t.index ["user_id"], name: "index_documents_on_user_id"
   end
 
-  create_table "documents_postulations", id: false, force: :cascade do |t|
+  create_table "document_postulations", id: false, force: :cascade do |t|
     t.integer "document_id", null: false
     t.integer "postulation_id", null: false
   end

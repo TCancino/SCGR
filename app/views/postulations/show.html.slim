@@ -1,6 +1,28 @@
 p#notice = notice
 
+- full_name = @aplicant.first_name + " " + @aplicant.last_name
 
-=> link_to 'Edit', edit_postulation_path(@postulation)
+h1 = full_name
+
+br
+table
+  thead
+    tr
+      th[scope="col"]
+        |  Nombre
+      th[scope="col"]
+        |  Link
+      th[scope="col"]
+
+  tbody
+    - for i in (0..@how_many-1)
+      tr
+        td = @documents[i].name
+        td = @documents[i].link
+        td = link_to 'Destruir', @documents[i], data: { confirm: 'Are you sure?' }, method: :delete
+
+br
+
+=> link_to 'Editar', edit_postulation_path(@postulation)
 '|
-=< link_to 'Back', postulations_path
+=< link_to 'Atrás', post_path(@postulation.post_id)

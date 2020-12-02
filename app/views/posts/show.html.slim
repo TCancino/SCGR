@@ -17,6 +17,8 @@ table
   thead
     tr
       th[scope="col"]
+        |  Código
+      th[scope="col"]
         |  Postulante
       th[scope="col"]
         |  Estado de Postulación
@@ -27,9 +29,10 @@ table
   tbody
     - for i in (0..@how_many-1)
       tr
+        td = @postulations[i].id
         td = @users_names[i]
         td = @postulations_states[i]
-        td = link_to 'Detalles', @postulations[i]
+        td = link_to 'Archivos', @postulations[i]
         td = link_to 'Editar', edit_postulation_path(@postulations[i].id)
         td = link_to 'Destruir', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
 
