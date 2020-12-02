@@ -11,6 +11,25 @@ class PostulationsController < ApplicationController
   # GET /postulations/1.json
   def show
     @postulation = Postulation.find(params[:id])
+    @aplicant = User.find(@postulation.user_id)
+    doc_a = Document.all
+    docs = []
+    for d in doc_a
+      if d.user_id == @postulation.user_id
+        docs.append(d)
+      end
+    end
+    doc_post = DocumentPostulation.all
+    @documents = []
+    @how_many = 0
+      for d_p in doc_post
+        for d in docs
+          if d_p.document_id == d.id
+            @documents.append(d)
+            @how_many = @how_many + 1
+          end
+        end
+      end
   end
 
   # GET /postulations/new
