@@ -1,0 +1,15 @@
+h1 Lista de Usuarios
+
+table
+  thead
+    tr
+      th Nombre
+      th Correo
+
+  tbody
+    - @users.each do |user|
+      tr
+        td = user.first_name + " " + user.last_name
+        td = user.email
+
+br
