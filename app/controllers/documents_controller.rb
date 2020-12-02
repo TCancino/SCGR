@@ -10,6 +10,7 @@ class DocumentsController < ApplicationController
   # GET /documents/1
   # GET /documents/1.json
   def show
+    @document = Document.find(params[:id])
   end
 
   # GET /documents/new
