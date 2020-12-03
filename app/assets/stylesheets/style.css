@@ -106,9 +106,9 @@ label #sidebar_btn{
   color: #fff;
   position: fixed;
   cursor: pointer;
-  left: 300px;
+  left: 100px;
   font-size: 20px;
-  margin: 5px 0;
+  margin: -8px 0;
   transition: 0.5s;
   transition-property: color;
 }
