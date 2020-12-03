@@ -7,9 +7,13 @@
       thead
         tr
           th[scope="col"]
+            |  Código
+          th[scope="col"]
             |  OFERTA
           th[scope="col"]
             |  Requerimientos
+          th[scope="col"]
+            |  Vacantes
           th[scope="col"]
           th[scope="col"]
           th[scope="col"]
@@ -17,13 +21,15 @@
       tbody
         - @posts.each do |post|
           tr
+            td = post.id
             td = post.name
             td = post.requirements
+            td = post.vacancies
             td = link_to 'Detalles', post
+            td = link_to 'Eliminar', post, data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete
             td
               button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#editPost#{post.id}"
                 span.fa.fa-pen[aria-hidden="true"]
-            td = link_to 'Eliminar', post, data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete
 
 - @posts.each do |post|
   = render partial: 'edit_post_partial', locals: { post: post }
