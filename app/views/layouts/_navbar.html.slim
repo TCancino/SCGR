@@ -57,6 +57,10 @@ html[lang="en" dir="ltr"]
         = link_to users_path, class: "nav-link" do
           i class="fas fa-user-tie"
           span Usuarios
+      li class="nav-item"
+        = link_to documents_path, class: "nav-link" do
+            i class="far fa-folder-open"
+            span Mis Documentos
       /a href="postulations"
         li = link_to 'Postulations', postulations_path
       /a[href="#1"]
