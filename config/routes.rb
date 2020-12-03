@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   resources :posts
   resources :documents
   #devise_for :users
-  devise_for :users, :path_prefix => 'd'
+  devise_for :users, :path_prefix => 'd', controllers: { registrations: 'users/registrations' }
   resources :users, :only =>[:show]
 
   devise_scope :user do

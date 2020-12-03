@@ -6,4 +6,5 @@ class User < ApplicationRecord
   has_many :documents
   has_many :postulations
   has_many :posts
+  has_many_attached :files
 end
