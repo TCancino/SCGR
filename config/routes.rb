@@ -6,7 +6,8 @@ Rails.application.routes.draw do
   resources :document_postulations
   resources :posts
   resources :documents
-  devise_for :users
+  devise_for :users, controllers: { registrations: 'users/registrations' }
+
   resources :users, :only =>[:show]
 
   devise_scope :user do

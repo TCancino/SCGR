@@ -6,6 +6,7 @@ class User < ApplicationRecord
   has_many :documents
   has_many :postulations
   has_many :posts
+  has_many_attached :files
 
   def full_rut
     centena = rut%1000
