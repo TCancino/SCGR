@@ -3,9 +3,9 @@ Rails.application.routes.draw do
   match '/users',   to: 'users#index',   via: 'get'
   resources :document_postulations
   resources :posts
+  resources :postulations
   resources :documents
   devise_for :users, controllers: { registrations: 'users/registrations' }
-
   resources :users, :only =>[:show]
 
   devise_scope :user do
