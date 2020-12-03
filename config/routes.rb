@@ -1,8 +1,6 @@
 Rails.application.routes.draw do
   #get 'users/index'
   match '/users',   to: 'users#index',   via: 'get'
-  match '/users/:id',     to: 'users#show',       via: 'get'
-  resources :postulations
   resources :document_postulations
   resources :posts
   resources :documents
