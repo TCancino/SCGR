@@ -10,8 +10,8 @@ table
   tbody
     - @document_postulations.each do |document_postulation|
       tr
-        td = link_to 'Show', document_postulation
-        td = link_to 'Edit', edit_document_postulation_path(document_postulation)
+        td = link_to 'Show', document_postulation.id
+        td = link_to 'Edit', edit_document_postulation_path(document_postulation.id)
         td = link_to 'Destroy', document_postulation, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
