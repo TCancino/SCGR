@@ -13,6 +13,8 @@
           th[scope="col"]
             |  Requerimientos
           th[scope="col"]
+            | Estado de Postulación
+          th[scope="col"]
             |  Vacantes
           th[scope="col"]
           th[scope="col"]
@@ -24,6 +26,7 @@
             td = post.id
             td = post.name
             td = post.requirements
+            td = post.post_state_id
             td = post.vacancies
             td = link_to 'Detalles', post
             td = link_to 'Eliminar', post, data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete

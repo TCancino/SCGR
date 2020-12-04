@@ -6,13 +6,31 @@
         - @post.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :nombre
-    = f.text_field :name
-  .field
-    = f.label :requerimientos
-    = f.text_field :requirements
-  .field
-    = f.label :vacantes
-    = f.number_field :vacancies
-  .actions = f.submit
+  .div[class="container"]
+    .div[class="row"]
+      .div class="col-25"
+        label for="fname"
+          | Nombre
+      = f.text_field :name, class: 'type="text"'
+    .div[class="row"]
+      .div class="col-25"
+        label for="fname"
+          | Requerimientos
+      = f.text_field :requirements, class: 'type="text"'
+    .div[class="row"]
+      .div class="col-25"
+        label for="number"
+          | Vacantes
+      = f.number_field :vacancies, class: 'type="text"'
+    .div[class="row"]
+      .div class="col-25"
+        label for="country"
+          | Estado de la Postulación
+      = f.select :post_state_id, options_for_select(PostState.all.map {|ct| [ct.name, ct.id]}.sort, selected: @post.post_state_id), {include_blank: 'Estado de la Postulación', :class => 'type="text"' }
+    .div[class="row"]
+      .div class="col-25"
+        label for="country"
+          | Usuario
+      = f.select :user_id, options_for_select(User.all.map {|kv| [kv.first_name, kv.id]}.sort, selected: @post.user_id), {include_blank: 'Usuario', :class => 'type="text"' }
+    .div class="row mt-5"
+    = f.submit 'Guardar', class: 'btn btn-success'
