@@ -3,13 +3,23 @@ h1 Lista de Usuarios
 table
   thead
     tr
-      th Nombre
-      th Correo
+      th[scope="col"]
+            |  Código
+      th [scope="col"]
+            |  Nombre
+      th [scope="col"]
+            |  Correo
+      th [scope="col"]
+            |  RUT
+      th [scope="col"]
 
   tbody
     - @users.each do |user|
       tr
+        td = user.id
         td = user.first_name + " " + user.last_name
         td = user.email
+        td = user.full_rut()
+        td = link_to 'Edit', edit_user_registration_path(user)
 
 br

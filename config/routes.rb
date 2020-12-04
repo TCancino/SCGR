@@ -1,13 +1,11 @@
 Rails.application.routes.draw do
   #get 'users/index'
   match '/users',   to: 'users#index',   via: 'get'
-  match '/users/:id',     to: 'users#show',       via: 'get'
-  resources :postulations
   resources :document_postulations
   resources :posts
+  resources :postulations
   resources :documents
-  #devise_for :users
-  devise_for :users, :path_prefix => 'd'
+  devise_for :users, controllers: { registrations: 'users/registrations' }
   resources :users, :only =>[:show]
 
   devise_scope :user do
