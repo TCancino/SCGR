@@ -1,4 +1,3 @@
 class PostState < ApplicationRecord
-    belongs_to :post_state
-    belongs_to :user
+    belongs_to :post, inverse_of: :post_states
 end
