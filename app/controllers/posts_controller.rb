@@ -3,6 +3,14 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    @post = []
+    @post_state = []
+    @how_many = 0
+    for i in @posts
+      @post.append(i)
+      @post_state.append(PostState.find(i.post_state_id))
+      @how_many = @how_many + 1
+    end
   end
 
   def show
