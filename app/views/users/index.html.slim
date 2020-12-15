@@ -12,14 +12,17 @@ table
       th [scope="col"]
             |  RUT
       th [scope="col"]
+            |  Rol
+      th [scope="col"]
 
   tbody
-    - @users.each do |user|
+    - for i in (0..@how_many-1)
       tr
-        td = user.id
-        td = user.first_name + " " + user.last_name
-        td = user.email
-        td = user.full_rut()
-        td = link_to 'Edit', edit_user_registration_path(user)
+        td = @users[i].id
+        td = @users[i].full_name()
+        td = @users[i].email
+        td = @users[i].full_rut()
+        td = @roles[i]
+        td = link_to 'Edit', edit_user_registration_path(@users[i])
 
 br
