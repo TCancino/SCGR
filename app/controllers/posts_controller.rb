@@ -38,6 +38,13 @@ class PostsController < ApplicationController
 
   def new
     @post = Post.new
+    users = User.all
+    @clients = []
+    for user in users
+      if user.role == 2
+        @clients.append(user)
+      end
+    end
   end
 
   def edit
