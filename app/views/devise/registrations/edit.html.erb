@@ -32,6 +32,14 @@
   </div>
 
   <div class="field">
+    <%= f.label :my_files %><br />
+    <% current_user.files.each do |document| %>
+      <%= link_to document.filename, document %>
+      <br>
+    <% end %>
+  </div>
+
+  <div class="field">
     <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
     <%= f.password_field :current_password, autocomplete: "current-password" %>
   </div>

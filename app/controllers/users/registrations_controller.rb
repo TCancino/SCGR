@@ -15,14 +15,22 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # end
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
+  #def edit
+  # @documents = User.with_attached_files
+  #end
 
-  # PUT /resource
-  # def update
-  #   super
-  # end
+  ## PUT /resource
+  #def update
+  #  respond_to do |format|
+  #    if @user.update(configure_account_update_params)
+  #      format.html { redirect_to @user, notice: 'User was successfully updated.' }
+  #      format.json { render :show, status: :ok, location: @user }
+  #    else
+  #      format.html { render :edit }
+  #      format.json { render json: @user.errors, status: :unprocessable_entity }
+  #    end
+  #  end
+  #end
 
   # DELETE /resource
   # def destroy
@@ -43,14 +51,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # If you have extra params to permit, append them to the sanitizer.
   def configure_sign_up_params
     devise_parameter_sanitizer.permit(:sign_up) do |user|
-      user.permit(:first_name, :last_name, :email, :password, :password_confirmation, :rut, :dv )
+      user.permit(:first_name, :last_name, :email, :password, :password_confirmation, :rut, :dv)
     end
   end
 
   # If you have extra params to permit, append them to the sanitizer.
   def configure_account_update_params
     devise_parameter_sanitizer.permit(:account_update) do |user|
-      user.permit(:email, :password, :password_confirmation, :current_password, files: [] )
+      user.permit(:email, :password, :password_confirmation, :current_password, files: [])
     end
   end
 
