@@ -53,10 +53,11 @@ html[lang="en" dir="ltr"]
         = link_to posts_path, class: "nav-link" do
           i class="fas fa-desktop"
           span Ofertas de Tarabajo
-      li class="nav-item"
-        = link_to users_path, class: "nav-link" do
-          i class="fas fa-user-tie"
-          span Usuarios
+      - if current_user.role == 0
+        li class="nav-item"
+          = link_to users_path, class: "nav-link" do
+            i class="fas fa-user-tie"
+            span Usuarios
       li class="nav-item"
         = link_to documents_path, class: "nav-link" do
             i class="far fa-folder-open"
