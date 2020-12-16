@@ -31,7 +31,7 @@ div[id="editPost#{post.id}" class="modal fade" role="dialog"]
           .input-group-prepend[style="width: 100%"]
             span.input-group-text[style="width: 100%"]
               | Usuario
-          = f.select :user_id, options_for_select(User.all.map {|kv| [kv.first_name, kv.id]}.sort, selected: post.user_id), {include_blank: 'Usuario', :class => 'type="text"' }
+          = f.select :user_id, options_for_select(@clients.map {|kv| [kv.first_name, kv.id]}.sort, selected: post.user_id), {include_blank: 'Usuario', :class => 'type="text"' }
 
         = f.submit 'Guardar', class: 'btn btn-success'
       .modal-footer
