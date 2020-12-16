@@ -7,7 +7,7 @@ class UsersController < ApplicationController
     for u in all_users
       @users.append(u)
       role = u.role
-      if role == 0
+      if role == 3
         @roles.append('Admin')
       elsif role == 1
         @roles.append('Consultor')

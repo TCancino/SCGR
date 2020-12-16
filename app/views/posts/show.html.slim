@@ -41,7 +41,7 @@ table
 
 br
 
-- if current_user.role == 4 or current_user.role == 0 #postulante o admin
+- if current_user.role == 0 or current_user.role == 3 #postulante o admin
   => link_to 'Postular', edit_user_registration_path(current_user.id)
   '|
 => link_to 'Editar', edit_post_path(@post)
