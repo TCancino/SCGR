@@ -6,4 +6,12 @@
         - @postulation.errors.full_messages.each do |message|
           li = message
 
-  .actions = f.submit
+  .div[class="container"]
+    .div[class="row"]
+      .div class="col-25"
+        label for="country"
+          | Estado de la Postulación
+      = f.select :post_state_id, options_for_select(PostState.all.map {|ct| [ct.name, ct.id]}.sort, selected: @post.post_state_id), {include_blank: 'Estado de la Postulación', :class => 'type="text"' }
+    
+    .div class="row mt-5"
+    = f.submit 'Guardar', class: 'btn btn-success'

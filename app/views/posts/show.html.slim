@@ -37,9 +37,14 @@ table
         td = @users_names[i]
         td = @postulations_states[i]
         - if current_user.role == 3 or current_user.role == 1
+          td
+            button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#editPostulation#{@postulations[i].id}"
+              span.fa.fa-pen[aria-hidden="true"]
           td = link_to 'Archivos', @postulations[i]
-          td = link_to 'Editar', edit_postulation_path(@postulations[i].id)
           td = link_to 'Eliminar', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
+
+- @postulations.each do |postulation|
+  = render partial: 'edit_postulation_partial', locals: { postulation: postulation }
 
 br
 

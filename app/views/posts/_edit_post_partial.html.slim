@@ -3,7 +3,7 @@ div[id="editPost#{post.id}" class="modal fade" role="dialog"]
   .modal-dialog
     .modal-content
       .modal-header
-        h4.modal-title="Editar Postulación"
+        h4.modal-title="Editar Oferta Laboral"
         button.close data-dismiss="modal" type="button"
           |&times;
       = form_for post do |f|
@@ -25,7 +25,7 @@ div[id="editPost#{post.id}" class="modal fade" role="dialog"]
         .input-group
           .input-group-prepend[style="width: 100%"]
             span.input-group-text[style="width: 100%"]
-              | Estado de la postulación:
+              | Estado de la oferta laboral:
           = f.select :post_state_id, options_for_select(PostState.all.map {|ct| [ct.name, ct.id]}.sort, selected: post.post_state_id), {include_blank: 'Estado de la Postulación', :class => 'type="text"' }
         .input-group
           .input-group-prepend[style="width: 100%"]
