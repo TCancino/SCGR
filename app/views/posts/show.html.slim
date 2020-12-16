@@ -25,9 +25,10 @@ table
         |  Postulante
       th[scope="col"]
         |  Estado de Postulación
-      th[scope="col"]
-      th[scope="col"]
-      th[scope="col"]
+      - if current_user.role == 3 or current_user.role == 1
+        th[scope="col"]
+        th[scope="col"]
+        th[scope="col"]
 
   tbody
     - for i in (0..@how_many-1)
@@ -35,15 +36,17 @@ table
         td = @postulations[i].id
         td = @users_names[i]
         td = @postulations_states[i]
-        td = link_to 'Archivos', @postulations[i]
-        td = link_to 'Editar', edit_postulation_path(@postulations[i].id)
-        td = link_to 'Destruir', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
+        - if current_user.role == 3 or current_user.role == 1
+          td = link_to 'Archivos', @postulations[i]
+          td = link_to 'Editar', edit_postulation_path(@postulations[i].id)
+          td = link_to 'Eliminar', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
 - if current_user.role == 0 or current_user.role == 3 #postulante o admin
   => link_to 'Postular', edit_user_registration_path(current_user.id)
   '|
-=> link_to 'Editar', edit_post_path(@post)
-'|
+- if current_user.role == 1 or current_user.role == 3 #consultor o admin
+  => link_to 'Editar', edit_post_path(@post)
+  '|
 =< link_to 'Atrás', posts_path
