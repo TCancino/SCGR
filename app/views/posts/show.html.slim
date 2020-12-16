@@ -33,8 +33,8 @@ table
   tbody
     - for i in (0..@how_many-1)
       tr
-        td = @postulations[i].id
-        td = @users_names[i]
+        td = @users[i].id
+        td = @users[i].full_name()
         td = @postulations_states[i]
         - if current_user.role == 3 or current_user.role == 1
           td
