@@ -1,1 +1,6 @@
 - content_for :title, 'Inicio'
+
+- if user_signed_in?
+    h1 Sistema de Control y Gestión de Reclutamiento
+
+    = image_tag  "jojos.jpeg"

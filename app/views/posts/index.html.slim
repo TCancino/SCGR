@@ -24,8 +24,8 @@
         - for i in (0..@how_many-1)
           tr
             td = @post[i].id
-            td = @post[i].requirements
             td = @post[i].name
+            td = @post[i].requirements
             td = @post_state[i].name
             td = @post[i].vacancies
             td = link_to 'Detalles', @post[i]
