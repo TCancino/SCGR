@@ -5,32 +5,24 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_account_update_params, only: [:update]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+   def new
+     super
+   end
 
   # POST /resource
-  # def create
-  #   super
-  # end
+   def create
+     super
+   end
 
   # GET /resource/edit
-  #def edit
-  # @documents = User.with_attached_files
-  #end
+   def edit
+    super
+   end
 
-  ## PUT /resource
-  #def update
-  #  respond_to do |format|
-  #    if @user.update(configure_account_update_params)
-  #      format.html { redirect_to @user, notice: 'User was successfully updated.' }
-  #      format.json { render :show, status: :ok, location: @user }
-  #    else
-  #      format.html { render :edit }
-  #      format.json { render json: @user.errors, status: :unprocessable_entity }
-  #    end
-  #  end
-  #end
+  # PUT /resource
+   def update
+    super
+   end
 
   # DELETE /resource
   # def destroy
