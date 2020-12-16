@@ -1,0 +1,17 @@
+
+div[id="editPostulation#{postulation.id}" class="modal fade" role="dialog"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h4.modal-title="Editar Postulación"
+        button.close data-dismiss="modal" type="button"
+          |&times;
+      = form_for postulation do |f|
+        .input-group
+          .input-group-prepend[style="width: 100%"]
+            span.input-group-text[style="width: 100%"]
+              | Estado de la postulación:
+          = f.select :postulation_state_id, options_for_select(PostulationState.all.map {|ct| [ct.name, ct.id]}.sort, selected: postulation.postulation_state_id), {include_blank: 'Estado de la Postulación', :class => 'type="text"' }
+
+        = f.submit 'Guardar', class: 'btn btn-success'
+      .modal-footer

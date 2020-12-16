@@ -90,6 +90,10 @@ class PostulationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def postulation_params
-      params.fetch(:postulation, {})
+      params.require(:postulation).permit(
+        :post_id,
+        :postulation_state_id,
+        :user_id
+      )
     end
 end
