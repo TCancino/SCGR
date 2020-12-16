@@ -7,9 +7,17 @@ class PostsController < ApplicationController
     @post_state = []
     @how_many = 0
     for i in @posts
-      @post.append(i)
-      @post_state.append(PostState.find(i.post_state_id))
-      @how_many = @how_many + 1
+      if current_user.role == 2 #Cliente
+        if i.user_id == current_user.id
+          @post.append(i)
+          @post_state.append(PostState.find(i.post_state_id))
+          @how_many = @how_many + 1
+        end
+      else
+        @post.append(i)
+        @post_state.append(PostState.find(i.post_state_id))
+        @how_many = @how_many + 1
+      end
     end
     users = User.all
     @clients = []
