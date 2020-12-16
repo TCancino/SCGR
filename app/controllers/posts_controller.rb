@@ -55,6 +55,13 @@ class PostsController < ApplicationController
   end
 
   def edit
+    users = User.all
+    @clients = []
+    for user in users
+      if user.role == 2
+        @clients.append(user)
+      end
+    end
   end
 
   def create
