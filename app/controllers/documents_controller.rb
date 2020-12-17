@@ -2,11 +2,13 @@ class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
   def index
-    @documents = Document.all
+    @documents = User.all
   end
 
   def show
-    @document = Document.find(params[:id])
+    #debugger
+    #@document = Document.find(params[:id])
+    render 'documents/show'
   end
 
   def new
@@ -17,7 +19,11 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    @document = Document.new(document_params)
+    #debugger
+    doc_name = document_params[:name]
+    doc_file = document_params[:link]
+    @document = Document.new(name: doc_name, link: doc_file, user_id: current_user.id)
+
     respond_to do |format|
       if @document.save
         format.html { redirect_to @document, notice: 'Document was successfully created.' }
@@ -42,9 +48,10 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    @document.delete
+    #debugger
+    @document.purge_later
     respond_to do |format|
-      format.html { redirect_to document_path, notice: 'Document was successfully destroyed.' }
+      format.html { redirect_to documents_path, notice: 'Documento eliminado exitosamente.' }
       format.json { head :no_content }
     end
   end
@@ -52,11 +59,12 @@ class DocumentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
-      @document = Document.find(params[:id])
+      debugger
+      @document = ActiveStorage::Blob.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
     def document_params
-      params.require(:document).permit(:name, :link, :user_id)
+      params.require(:document).permit(:id)
     end
 end

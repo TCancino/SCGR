@@ -3,23 +3,14 @@ h1 Listas de Documentos
 table[class='table table-striped table-dark']
   thead
     tr
-      th Name
-      th Link
-      th
-      th
+      th Nombre Documento
       th
 
   tbody
-    - @documents.each do |document|
+    - current_user.files.each do |document|
       tr
-        td = document.name
-        td = document.link
-        td = link_to document, class: "btn btn-primary" do
-              span.fas.fa-info-circle[aria-hidden="true"]
-        td = link_to edit_document_path(document), class: "btn btn-light" do
-              span.fa.fa-pen[aria-hidden="true"]
-        td = button_to document, data: { confirm: 'Are you sure?' }, method: :delete, class: 'btn btn-danger' do
-              span.fa.fa-trash.danger[aria-hidden="true"]
+        td = link_to document.filename, document
+        td = link_to 'Eliminar', document_path(document.id), method: :delete, data: { confirm: '¿Estás seguro?' }
 
 br
 
