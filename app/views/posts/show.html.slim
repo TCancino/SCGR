@@ -1,17 +1,20 @@
 p#notice = notice
 
 p
-  strong OFERTA:
+  strong OFERTA: 
   = @post.name
 p
-  strong Requerimientos:
+  strong Requerimientos: 
   = @post.requirements
 p
-  strong Vacantes:
+  strong Vacantes: 
   = @post.vacancies
 p
-  strong Estado:
+  strong Estado: 
   = @state.name
+p
+  strong Cantidad de Postulantes: 
+  = @how_many
 
 table
   thead
@@ -22,24 +25,33 @@ table
         |  Postulante
       th[scope="col"]
         |  Estado de Postulación
-      th[scope="col"]
-      th[scope="col"]
-      th[scope="col"]
+      - if current_user.role == 3 or current_user.role == 1
+        th[scope="col"]
+        th[scope="col"]
+        th[scope="col"]
 
   tbody
     - for i in (0..@how_many-1)
       tr
-        td = @postulations[i].id
-        td = @users_names[i]
+        td = @users[i].id
+        td = @users[i].full_name()
         td = @postulations_states[i]
-        td = link_to 'Archivos', @postulations[i]
-        td = link_to 'Editar', edit_postulation_path(@postulations[i].id)
-        td = link_to 'Destruir', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
+        - if current_user.role == 3 or current_user.role == 1
+          td
+            button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#editPostulation#{@postulations[i].id}"
+              span.fa.fa-pen[aria-hidden="true"]
+          td = link_to 'Archivos', @postulations[i]
+          td = link_to 'Eliminar', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
+
+- @postulations.each do |postulation|
+  = render partial: 'edit_postulation_partial', locals: { postulation: postulation }
 
 br
 
-=> link_to 'Postular', edit_user_registration_path(current_user.id)
-'|
-=> link_to 'Editar', edit_post_path(@post)
-'|
+- if current_user.role == 0 or current_user.role == 3 #postulante o admin
+  => link_to 'Postular', edit_user_registration_path(current_user.id)
+  '|
+- if current_user.role == 1 or current_user.role == 3 #consultor o admin
+  => link_to 'Editar', edit_post_path(@post)
+  '|
 =< link_to 'Atrás', posts_path

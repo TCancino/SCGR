@@ -27,4 +27,8 @@ class User < ApplicationRecord
     return if rut.blank? && dv.blank?
     "#{txt_rut}-#{dv&.upcase}"
   end
+
+  def full_name
+    return first_name + " " + last_name
+  end
 end

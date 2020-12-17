@@ -17,23 +17,26 @@
           th[scope="col"]
             |  Vacantes
           th[scope="col"]
-          th[scope="col"]
-          th[scope="col"]
+          - if current_user.role == 3 or current_user.role == 1 #Admin or Consultor
+            th[scope="col"]
+            th[scope="col"]
 
       tbody
-        - @posts.each do |post|
+        - for i in (0..@how_many-1)
           tr
-            td = post.id
-            td = post.name
-            td = post.requirements
-            td = post.post_state_id
-            td = post.vacancies
-            td = link_to 'Detalles', post
-            td = link_to 'Eliminar', post, data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete
-            td
-              button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#editPost#{post.id}"
-                span.fa.fa-pen[aria-hidden="true"]
+            td = @post[i].id
+            td = @post[i].name
+            td = @post[i].requirements
+            td = @post_state[i].name
+            td = @post[i].vacancies
+            td = link_to 'Detalles', @post[i]
+            - if current_user.role == 3 or current_user.role == 1 #Admin or Consultor
+              td = link_to 'Eliminar', @post[i], data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete
+              td
+                button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#editPost#{@post[i].id}"
+                  span.fa.fa-pen[aria-hidden="true"]
 
 - @posts.each do |post|
   = render partial: 'edit_post_partial', locals: { post: post }
-= link_to 'Crear Oferta de Trabajo', new_post_path
+- if current_user.role == 3 or current_user.role == 1 #Admin or Consultor
+  = link_to 'Crear Oferta de Trabajo', new_post_path

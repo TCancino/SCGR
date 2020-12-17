@@ -53,14 +53,16 @@ html[lang="en" dir="ltr"]
         = link_to posts_path, class: "nav-link" do
           i class="fas fa-desktop"
           span Ofertas de Tarabajo
-      li class="nav-item"
-        = link_to users_path, class: "nav-link" do
-          i class="fas fa-user-tie"
-          span Usuarios
-      li class="nav-item"
-        = link_to documents_path, class: "nav-link" do
-            i class="far fa-folder-open"
-            span Mis Documentos
+      - if current_user.role == 3
+        li class="nav-item"
+          = link_to users_path, class: "nav-link" do
+            i class="fas fa-user-tie"
+            span Usuarios
+      - if current_user.role == 3 or current_user.role == 0 #Admin o Postulante
+        li class="nav-item"
+          = link_to documents_path, class: "nav-link" do
+              i class="far fa-folder-open"
+              span Mis Documentos
       /a href="postulations"
         li = link_to 'Postulations', postulations_path
       /a[href="#1"]

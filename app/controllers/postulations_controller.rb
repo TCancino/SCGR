@@ -61,10 +61,11 @@ class PostulationsController < ApplicationController
   # PATCH/PUT /postulations/1
   # PATCH/PUT /postulations/1.json
   def update
+    @post = Post.find(@postulation.post_id)
     respond_to do |format|
       if @postulation.update(postulation_params)
-        format.html { redirect_to @postulation, notice: 'Postulation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @postulation }
+        format.html { redirect_to @post, notice: 'Postulation was successfully updated.' }
+        format.json { render :show, status: :ok, location: @post }
       else
         format.html { render :edit }
         format.json { render json: @postulation.errors, status: :unprocessable_entity }
@@ -90,6 +91,10 @@ class PostulationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def postulation_params
-      params.fetch(:postulation, {})
+      params.require(:postulation).permit(
+        :post_id,
+        :postulation_state_id,
+        :user_id
+      )
     end
 end
