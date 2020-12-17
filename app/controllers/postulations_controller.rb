@@ -83,6 +83,12 @@ class PostulationsController < ApplicationController
     end
   end
 
+  def show_user_docs
+    @postulation = Postulation.find(params[:id])
+    @documents = User.all
+    @user = User.find(@postulation.user_id)
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_postulation

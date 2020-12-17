@@ -3,6 +3,7 @@ class DocumentsController < ApplicationController
 
   def index
     @documents = User.all
+    @user = current_user
   end
 
   def show

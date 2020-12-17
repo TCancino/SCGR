@@ -48,7 +48,7 @@ p
               td
                 button type="button" class="btn btn-light" data-toggle="modal" data-target="#editPostulation#{@postulations[i].id}"
                   span.fa.fa-pen[aria-hidden="true"]
-              td = link_to 'Archivos', @postulations[i], class: 'btn btn-info'
+              td = link_to 'Archivos', show_docs_postulation_path(@postulations[i]), class: 'btn btn-info'
               td = button_to @postulations[i], data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete, class: 'btn btn-danger' do
                     span.fa.fa-trash.danger[aria-hidden="true"]
 

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   #get 'users/index'
   #delete "/posts/delete/:id", to: "posts#destroy", as: "delete_post"
+  get "postulation/show_files/:id", to: "postulations#show_user_docs", as: "show_docs_postulation"
   match '/users',   to: 'users#index',   via: 'get'
   resources :document_postulations
   resources :posts

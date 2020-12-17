@@ -51,3 +51,5 @@
   = render partial: 'edit_post_partial', locals: { post: post }
 - if current_user.role == 3 or current_user.role == 1 #Admin or Consultor
   = link_to 'Crear Oferta de Trabajo', new_post_path
+  '|
+=< link_to 'Atrás', root_path
