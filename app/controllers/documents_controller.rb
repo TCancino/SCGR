@@ -1,33 +1,24 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
-  # GET /documents
-  # GET /documents.json
   def index
     @documents = User.all
+    @user = current_user
   end
 
-  # GET /documents/1
-  # GET /documents/1.json
   def show
-    #debugger
     #@document = Document.find(params[:id])
     render 'documents/show'
   end
 
-  # GET /documents/new
   def new
     @document = Document.new
   end
 
-  # GET /documents/1/edit
   def edit
   end
 
-  # POST /documents
-  # POST /documents.json
   def create
-    #debugger
     doc_name = document_params[:name]
     doc_file = document_params[:link]
     @document = Document.new(name: doc_name, link: doc_file, user_id: current_user.id)
@@ -43,8 +34,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /documents/1
-  # PATCH/PUT /documents/1.json
   def update
     respond_to do |format|
       if @document.update(document_params)
@@ -57,8 +46,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # DELETE /documents/1
-  # DELETE /documents/1.json
   def destroy
     @document = ActiveStorage::Attachment.find(params[:id])
     @document.purge

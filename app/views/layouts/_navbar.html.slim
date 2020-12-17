@@ -20,9 +20,9 @@ html[lang="en" dir="ltr"]
           span
             | GR
       div[class="right_area"]
-        = link_to destroy_user_session_path, method: :delete, class: "dropdown-item" do
-          i[class="logout_btn"]
-              | Cerrar sesión
+        = link_to destroy_user_session_path, method: :delete do
+          i[class="logout_btn fas fa-sign-out-alt"]
+            | Cerrar sesión
     div[class="mobile_nav"]
       div[class="nav_bar"]
           i[class="fa fa-bars nav_btn"]
@@ -63,6 +63,11 @@ html[lang="en" dir="ltr"]
           = link_to documents_path, class: "nav-link" do
               i class="far fa-folder-open"
               span Mis Documentos
+      / - if current_user.role == 3 or current_user.role == 0 #Admin o Postulante
+      /   li class="nav-item"
+      /     = link_to document_postulations_path, class: "nav-link" do
+      /         i class="fas fa-id-card-alt"
+      /         span Documentos Postulación
       /a href="postulations"
         li = link_to 'Postulations', postulations_path
       /a[href="#1"]
