@@ -10,8 +10,12 @@
             |  Código
           th[scope="col"]
             |  OFERTA
-          th[scope="col"]
-            |  Requerimientos
+          - if current_user.role != 2
+            th[scope="col"]
+              |  Cliente
+          - if current_user.role == 2 or current_user.role == 3
+            th[scope="col"]
+              |  Requerimientos
           th[scope="col"]
             | Estado de Postulación
           th[scope="col"]
@@ -26,7 +30,10 @@
           tr
             td = @post[i].id
             td = @post[i].name
-            td = @post[i].requirements
+            - if current_user.role != 2
+              td = @post_client[i]
+            - if current_user.role == 2 or current_user.role == 3
+              td = @post[i].requirements
             td = @post_state[i].name
             td = @post[i].vacancies
             td = button_to 'Detalles', @post[i], method: :get
