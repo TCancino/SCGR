@@ -63,11 +63,11 @@ html[lang="en" dir="ltr"]
           = link_to documents_path, class: "nav-link" do
               i class="far fa-folder-open"
               span Mis Documentos
-      - if current_user.role == 3 or current_user.role == 0 #Admin o Postulante
-        li class="nav-item"
-          = link_to document_postulations_path, class: "nav-link" do
-              i class="fas fa-id-card-alt"
-              span Documentos Postulación
+      / - if current_user.role == 3 or current_user.role == 0 #Admin o Postulante
+      /   li class="nav-item"
+      /     = link_to document_postulations_path, class: "nav-link" do
+      /         i class="fas fa-id-card-alt"
+      /         span Documentos Postulación
       /a href="postulations"
         li = link_to 'Postulations', postulations_path
       /a[href="#1"]

@@ -6,7 +6,6 @@ class DocumentsController < ApplicationController
   end
 
   def show
-    #debugger
     #@document = Document.find(params[:id])
     render 'documents/show'
   end
@@ -19,7 +18,6 @@ class DocumentsController < ApplicationController
   end
 
   def create
-    #debugger
     doc_name = document_params[:name]
     doc_file = document_params[:link]
     @document = Document.new(name: doc_name, link: doc_file, user_id: current_user.id)
@@ -48,7 +46,6 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    #debugger
     @document.purge_later
     respond_to do |format|
       format.html { redirect_to documents_path, notice: 'Documento eliminado exitosamente.' }
@@ -59,7 +56,6 @@ class DocumentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
-      debugger
       @document = ActiveStorage::Blob.find(params[:id])
     end
 
