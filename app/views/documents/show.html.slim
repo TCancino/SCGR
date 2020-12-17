@@ -2,11 +2,21 @@ p#notice = notice
 
 p
   strong Name:
-  = @document.name
-p
-  strong Link:
-  = @document.link
+  = @document.filename
 
-=> link_to 'Edit', edit_document_path(@document)
+p
+  strong ID:
+  = @document.id
+
+p
+  strong ID:
+  = @document.content_type
+
+p
+  strong ID:
+  = @document.metadata
+
+
+=> link_to 'Eliminar', document_path, method: :delete, data: { confirm: '¿Estás seguro?' }
 '|
 =< link_to 'Back', documents_path

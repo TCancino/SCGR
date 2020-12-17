@@ -3,20 +3,14 @@ h1 Listing documents
 table
   thead
     tr
-      th Name
-      th Link
-      th
-      th
+      th Nombre Documento
       th
 
   tbody
-    - @documents.each do |document|
+    - current_user.files.each do |document|
       tr
-        td = document.name
-        td = document.link
-        td = link_to 'Show', document
-        td = link_to 'Edit', edit_document_path(document)
-        td = link_to 'Destroy', document, data: { confirm: 'Are you sure?' }, method: :delete
+        td = link_to document.filename, document
+        td = link_to 'Eliminar', document_path(document.id), method: :delete, data: { confirm: '¿Estás seguro?' }
 
 br
 
