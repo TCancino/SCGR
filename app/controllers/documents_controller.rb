@@ -42,7 +42,7 @@ class DocumentsController < ApplicationController
   end
 
   def destroy
-    @document.destroy
+    @document.delete
     respond_to do |format|
       format.html { redirect_to document_path, notice: 'Document was successfully destroyed.' }
       format.json { head :no_content }

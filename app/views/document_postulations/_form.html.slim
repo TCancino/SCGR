@@ -6,4 +6,14 @@
         - @document_postulation.errors.full_messages.each do |message|
           li = message
 
+  .div[class="row"]
+      .div class="col-25"
+        label for="country"
+          | Documento
+      = f.select :document_id, options_for_select(Document.all.map {|kv| [kv.name, kv.id]}.sort, selected: @document_postulation.document_id), {include_blank: 'Selecciona un Documento', :class => 'type="text"' }
+  .div[class="row"]
+      .div class="col-25"
+        label for="country"
+          | Postulación
+      = f.select :postulation_id, options_for_select(Post.all.map {|kv| [kv.name, kv.id]}.sort, selected: @document_postulation.postulation_id), {include_blank: 'Selecciona una Postulación', :class => 'type="text"' }
   .actions = f.submit
