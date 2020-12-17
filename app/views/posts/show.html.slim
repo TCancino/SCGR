@@ -16,32 +16,37 @@ p
   strong Cantidad de Postulantes: 
   = @how_many
 
-table
-  thead
-    tr
-      th[scope="col"]
-        |  Código
-      th[scope="col"]
-        |  Postulante
-      th[scope="col"]
-        |  Estado de Postulación
-      - if current_user.role == 3 or current_user.role == 1
-        th[scope="col"]
-        th[scope="col"]
-        th[scope="col"]
+.card.shadow.mb-4
+  .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
+    h3.m-0.font-weight-bold.text-primary
+      |Postulantes
+  .card-body
+    table.table.table-striped
+      thead
+        tr
+          th[scope="col"]
+            |  Código
+          th[scope="col"]
+            |  Postulante
+          th[scope="col"]
+            |  Estado de Postulación
+          - if current_user.role == 3 or current_user.role == 1
+            th[scope="col"]
+            th[scope="col"]
+            th[scope="col"]
 
-  tbody
-    - for i in (0..@how_many-1)
-      tr
-        td = @users[i].id
-        td = @users[i].full_name()
-        td = @postulations_states[i]
-        - if current_user.role == 3 or current_user.role == 1
-          td
-            button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#editPostulation#{@postulations[i].id}"
-              span.fa.fa-pen[aria-hidden="true"]
-          td = link_to 'Archivos', @postulations[i]
-          td = link_to 'Eliminar', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
+      tbody
+        - for i in (0..@how_many-1)
+          tr
+            td = @users[i].id
+            td = @users[i].full_name()
+            td = @postulations_states[i]
+            - if current_user.role == 3 or current_user.role == 1
+              td
+                button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#editPostulation#{@postulations[i].id}"
+                  span.fa.fa-pen[aria-hidden="true"]
+              td = link_to 'Archivos', @postulations[i]
+              td = button_to 'Eliminar', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
 
 - @postulations.each do |postulation|
   = render partial: 'edit_postulation_partial', locals: { postulation: postulation }
@@ -49,8 +54,8 @@ table
 br
 
 - if current_user.role == 0 or current_user.role == 3 #postulante o admin
-  => link_to 'Postular', edit_user_registration_path(current_user.id)
-  '|
+  => button_to 'Postular', edit_user_registration_path(current_user.id), method: :get
+  br
 - if current_user.role == 1 or current_user.role == 3 #consultor o admin
   => link_to 'Editar', edit_post_path(@post)
   '|

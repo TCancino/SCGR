@@ -29,9 +29,9 @@
             td = @post[i].requirements
             td = @post_state[i].name
             td = @post[i].vacancies
-            td = link_to 'Detalles', @post[i]
+            td = button_to 'Detalles', @post[i], method: :get
             - if current_user.role == 3 or current_user.role == 1 #Admin or Consultor
-              td = link_to 'Eliminar', @post[i], data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete
+              td = button_to 'Eliminar', @post[i], data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete
               td
                 button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#editPost#{@post[i].id}"
                   span.fa.fa-pen[aria-hidden="true"]
