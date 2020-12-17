@@ -60,8 +60,8 @@ class DocumentsController < ApplicationController
   # DELETE /documents/1
   # DELETE /documents/1.json
   def destroy
-    #debugger
-    @document.purge_later
+    @document = ActiveStorage::Attachment.find(params[:id])
+    @document.purge
     respond_to do |format|
       format.html { redirect_to documents_path, notice: 'Documento eliminado exitosamente.' }
       format.json { head :no_content }
@@ -71,8 +71,7 @@ class DocumentsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_document
-      debugger
-      @document = ActiveStorage::Blob.find(params[:id])
+      #@document = ActiveStorage::Attachment.find(params[:id])
     end
 
     # Only allow a list of trusted parameters through.
