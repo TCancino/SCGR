@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many_attached :files
 
   def full_rut
+    return if rut.blank? && dv.blank?
     centena = rut%1000
     centena_de_mil = ((rut - centena)/1000)%1000
     if centena_de_mil == 0

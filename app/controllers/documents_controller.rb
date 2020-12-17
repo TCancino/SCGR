@@ -1,34 +1,23 @@
 class DocumentsController < ApplicationController
   before_action :set_document, only: [:show, :edit, :update, :destroy]
 
-  # GET /documents
-  # GET /documents.json
   def index
     @documents = Document.all
   end
 
-  # GET /documents/1
-  # GET /documents/1.json
   def show
     @document = Document.find(params[:id])
   end
 
-  # GET /documents/new
   def new
     @document = Document.new
   end
 
-  # GET /documents/1/edit
   def edit
   end
 
-  # POST /documents
-  # POST /documents.json
   def create
-    doc_name = document_params[:name]
-    doc_file = document_params[:link]
-    @document = Document.new(name: doc_name, link: doc_file, user_id: current_user.id)
-
+    @document = Document.new(document_params)
     respond_to do |format|
       if @document.save
         format.html { redirect_to @document, notice: 'Document was successfully created.' }
@@ -40,8 +29,6 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /documents/1
-  # PATCH/PUT /documents/1.json
   def update
     respond_to do |format|
       if @document.update(document_params)
@@ -54,12 +41,10 @@ class DocumentsController < ApplicationController
     end
   end
 
-  # DELETE /documents/1
-  # DELETE /documents/1.json
   def destroy
     @document.destroy
     respond_to do |format|
-      format.html { redirect_to documents_url, notice: 'Document was successfully destroyed.' }
+      format.html { redirect_to document_path, notice: 'Document was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -72,6 +57,6 @@ class DocumentsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def document_params
-      params.require(:document).permit(:name, :link)
+      params.require(:document).permit(:name, :link, :user_id)
     end
 end
