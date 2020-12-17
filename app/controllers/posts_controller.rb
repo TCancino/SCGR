@@ -5,6 +5,7 @@ class PostsController < ApplicationController
     @posts = Post.all
     @post = []
     @post_state = []
+    @post_client = []
     @how_many = 0
     for i in @posts
       if current_user.role == 2 #Cliente
@@ -16,6 +17,7 @@ class PostsController < ApplicationController
       else
         @post.append(i)
         @post_state.append(PostState.find(i.post_state_id))
+        @post_client.append(User.find(i.user_id).full_name())
         @how_many = @how_many + 1
       end
     end
@@ -31,6 +33,7 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     id = @post.id
+    @client = User.find(@post.user_id).full_name()
     post_state = @post.post_state_id
     @state = PostState.find(post_state)
     postulations = Postulation.all
@@ -97,9 +100,9 @@ class PostsController < ApplicationController
   end
 
   def destroy
-    @post.destroy
+    @post.delete
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: 'Post was successfully destroyed.' }
+      format.html { redirect_to posts_path, notice: 'Post was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
