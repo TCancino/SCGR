@@ -7,16 +7,16 @@ p
   strong Cliente: 
   = @client
 p
-  strong Requerimientos: 
+  strong Requerimientos:
   = @post.requirements
 p
-  strong Vacantes: 
+  strong Vacantes:
   = @post.vacancies
 p
-  strong Estado: 
+  strong Estado:
   = @state.name
 p
-  strong Cantidad de Postulantes: 
+  strong Cantidad de Postulantes:
   = @how_many
 
 .card.shadow.mb-4
@@ -24,7 +24,7 @@ p
     h3.m-0.font-weight-bold.text-primary
       |Postulantes
   .card-body
-    table.table.table-striped
+    table[class='table table-striped table-dark']
       thead
         tr
           th[scope="col"]
@@ -46,10 +46,11 @@ p
             td = @postulations_states[i]
             - if current_user.role == 3 or current_user.role == 1
               td
-                button type="button" class="btn btn-sm btn-default" data-toggle="modal" data-target="#editPostulation#{@postulations[i].id}"
+                button type="button" class="btn btn-light" data-toggle="modal" data-target="#editPostulation#{@postulations[i].id}"
                   span.fa.fa-pen[aria-hidden="true"]
-              td = link_to 'Archivos', @postulations[i]
-              td = button_to 'Eliminar', @postulations[i], data: { confirm: 'Are you sure?' }, method: :delete
+              td = link_to 'Archivos', @postulations[i], class: 'btn btn-info'
+              td = button_to @postulations[i], data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete, class: 'btn btn-danger' do
+                    span.fa.fa-trash.danger[aria-hidden="true"]
 
 - @postulations.each do |postulation|
   = render partial: 'edit_postulation_partial', locals: { postulation: postulation }

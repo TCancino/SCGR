@@ -6,12 +6,22 @@
         - @document.errors.full_messages.each do |message|
           li = message
 
-  .field
-    = f.label :nombre
-    = f.text_field :name
-  .field
-    = f.label :link
-    /= f.label :archivo
-    = f.text_field :link 
-    /= f.file_field :link 
-  .actions = f.submit
+
+  .div[class="container"]
+    .div[class="row"]
+      .div class="col-25"
+        label for="fname"
+          | Nombre
+      = f.text_field :name
+    .div[class="row"]
+      .div class="col-25"
+        label for="fname"
+          | Link
+      = f.text_field :link
+    .div[class="row"]
+      .div class="col-25"
+        label for="country"
+          | Usuario
+      = f.select :user_id, options_for_select(User.all.map {|kv| [kv.first_name, kv.id]}.sort, selected: @document.user_id), {include_blank: 'Usuario', :class => 'type="text"' }
+    .div class="row mt-5"
+    = f.submit 'Guardar', class: 'btn btn-success'
