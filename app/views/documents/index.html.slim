@@ -10,7 +10,7 @@ table[class='table table-striped table-dark']
     - @user.files.each do |document|
       tr
         td = link_to document.filename, document
-        td = link_to 'Eliminar', document_path(document.id), method: :delete, data: { confirm: '¿Estás seguro?' }
+        td = button_to 'Eliminar', document_path(document.id), method: :delete, data: { confirm: '¿Estás seguro?' }
 
 br
 
