@@ -1,0 +1,38 @@
+div[id="editUser#{user.id}" class="modal fade" role="dialog"]
+  .modal-dialog
+    .modal-content
+      .modal-header
+        h4.modal-title="Editar Usuario #{user.id}"
+        button.close data-dismiss="modal" type="button"
+          |&times;
+      = form_for user do |f|
+        .hidden-group
+          =f.number_field :id, type: "hidden"
+        .input-group
+          .input-group-prepend[style="width: 100%"]
+            span.input-group-text[style="width: 100%"]
+              | Nombre:
+          = f.text_field :first_name, class: 'form-control'
+        .input-group
+          .input-group-prepend[style="width: 100%"]
+            span.input-group-text[style="width: 100%"]
+              | Apellido:
+          = f.text_field :last_name, class: 'form-control'
+        .input-group
+          .input-group-prepend[style="width: 100%"]
+            span.input-group-text[style="width: 100%"]
+              | RUT:
+          = f.number_field :rut, class: 'type="text"'
+        .input-group
+          .input-group-prepend[style="width: 100%"]
+            span.input-group-text[style="width: 100%"]
+              | DV:
+          = f.text_field :dv, class: 'form-control'
+        .input-group
+          .input-group-prepend[style="width: 100%"]
+            span.input-group-text[style="width: 100%"]
+              | Rol:
+          = f.number_field :role, class: 'form-control'
+
+        = f.submit 'Guardar', class: 'btn btn-success'
+      .modal-footer
