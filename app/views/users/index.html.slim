@@ -26,8 +26,11 @@
             td = @users[i].email
             td = @users[i].full_rut()
             td = @roles[i]
-            td = link_to edit_user_registration_path(@users[i]), class: "btn btn-light" do
-                  span.fa.fa-pen[aria-hidden="true"]
+            td 
+              button type="button" class="btn btn-light" data-toggle="modal" data-target="#editUser#{@users[i].id}"
+                span.fa.fa-pen[aria-hidden="true"]
+- @users.each do |user|
+  = render partial: 'edit_user_partial', locals: { user: user }
 
 br
 

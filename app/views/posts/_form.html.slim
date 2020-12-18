@@ -10,7 +10,7 @@
     .div[class="row"]
       .div class="col-25"
         label for="fname"
-          | Nombre
+          | Cargo
       = f.text_field :name, class: 'type="text"'
     .div[class="row"]
       .div class="col-25"
@@ -30,7 +30,7 @@
     .div[class="row"]
       .div class="col-25"
         label for="country"
-          | Usuario
+          | Cliente
       = f.select :user_id, options_for_select(@clients.map {|kv| [kv.first_name, kv.id]}.sort, selected: @post.user_id), {include_blank: 'Usuario', :class => 'type="text"' }
     .div class="row mt-5"
     = f.submit 'Guardar', class: 'btn btn-success'
