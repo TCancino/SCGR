@@ -5,22 +5,49 @@
     h1 Sistema de Control y Gestión de Reclutamiento
     div class="row w-100"
       div class="col-md-3"
-        div class="card border-info mx-sm-1 p-3"
-            div class="text-info text-center"
+        -if current_user.role == 2
+          div class="card border-info mx-sm-1 p-3"
+              div class="text-info text-center"
+                h4
+                  span class="fas fa-portrait" aria-hidden="true"
+                  |  Total de Ofertas de Trabajo
+              div class="text-info text-center mt-2"
+                h1
+                  = number_with_delimiter(@total_client_posts, delimiter: '.')
+        -else
+          div class="card border-info mx-sm-1 p-3"
+              div class="text-info text-center"
+                h4
+                  span class="fas fa-portrait" aria-hidden="true"
+                  |  Total de Ofertas de Trabajo
+              div class="text-info text-center mt-2"
+                h1
+                  = number_with_delimiter(@total_posts, delimiter: '.')
+      -if current_user.role != 0
+        div class="col-md-3"
+          div class="card border-success mx-sm-1 p-3"
+            div class="text-succes text-center"
               h4
-                span class="fas fa-portrait" aria-hidden="true"
-                |  Total de Ofertas de Trabajo
-            div class="text-info text-center mt-2"
+                span class="fa fa-user-friends" aria-hidden="true"
+                  |  Postulantes
+            div class="text-success text-center mt-2"
               h1
-                = number_with_delimiter(@total_posts, delimiter: '.')
-      div class="col-md-3"
-        div class="card border-success mx-sm-1 p-3"
-          div class="text-succes text-center"
+                = number_with_delimiter(@total_job_applicants, delimiter: '.')
+      /div class="col-md-3"
+        div class="card border-warning mx-sm-1 p-3"
+          div class="text-warning text-center"
             h4
-              span class="fa fa-user-friends" aria-hidden="true"
-                |  Postulantes
-          div class="text-success text-center mt-2"
+              span class="fa fa-file" aria-hidden="true"
+                |  Otro Dato
+          div class="text-warning text-center mt-2"
             h1
-              = number_with_delimiter(@total_job_applicants, delimiter: '.')
-
-
+              = number_with_delimiter(00, delimiter: '.')
+      /div class="col-md-3"
+        div class="card border-danger mx-sm-1 p-3"
+          div class="text-danger text-center"
+            h4
+              span class="fa fa-file" aria-hidden="true"
+                |  Y Otro Más
+          div class="text-danger text-center mt-2"
+            h1
+              = number_with_delimiter(00, delimiter: '.')
