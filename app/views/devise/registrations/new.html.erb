@@ -4,20 +4,20 @@
   <%= render "devise/shared/error_messages", resource: resource %>
 
   <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name, autofocus: true, autocomplete: "email", require: true %>
+    <%= f.label :Nombre %><br />
+    <%= f.text_field :first_name, autofocus: true, autocomplete: "Nombre", require: true %>
   </div>
   <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name, autofocus: true, autocomplete: "email" %>
+    <%= f.label :Apellido %><br />
+    <%= f.text_field :last_name, autofocus: true, autocomplete: "Apellido" %>
   </div>
   <div class="field">
-    <%= f.label :rut %><br />
-    <%= f.number_field :rut, autofocus: true, autocomplete: "email" %>
+    <%= f.label :RUT %><br />
+    <%= f.number_field :rut, autofocus: true, autocomplete: "11111111" %>
   </div>
   <div class="field">
-    <%= f.label :dv %><br />
-    <%= f.text_field :dv, autofocus: true, autocomplete: "email" %>
+    <%= f.label :DV %><br />
+    <%= f.text_field :dv, autofocus: true, autocomplete: "k" %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
@@ -25,15 +25,15 @@
   </div>
 
   <div class="field">
-    <%= f.label :password %>
+    <%= f.label :Password %>
     <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
+    <em>(<%= @minimum_password_length %> mínimo de caracteres)</em>
     <% end %><br />
     <%= f.password_field :password, autocomplete: "new-password", require: true %>
   </div>
 
   <div class="field">
-    <%= f.label :password_confirmation %><br />
+    <%= f.label :Password_Confirmation %><br />
     <%= f.password_field :password_confirmation, autocomplete: "new-password", require: true%>
   </div>
 
@@ -42,4 +42,4 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%#= render "devise/shared/links" %>

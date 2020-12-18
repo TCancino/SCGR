@@ -32,7 +32,7 @@ div[id="editUser#{user.id}" class="modal fade" role="dialog"]
           .input-group-prepend[style="width: 100%"]
             span.input-group-text[style="width: 100%"]
               | Rol:
-          = f.number_field :role, class: 'form-control'
+          = f.select :role, options_for_select({'Postulante' => 0, 'Consultor' => 1, 'Cliente' => 2, 'Admin' => 3}, selected: user.role), {include_blank: 'Rol de Usuario', :class => 'type="text"' }
 
         = f.submit 'Guardar', class: 'btn btn-success'
       .modal-footer
