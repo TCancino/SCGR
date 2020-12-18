@@ -29,6 +29,7 @@
             td 
               button type="button" class="btn btn-light" data-toggle="modal" data-target="#editUser#{@users[i].id}"
                 span.fa.fa-pen[aria-hidden="true"]
+    /=> button_to 'Nuevo Usuario', new_user_registration_path, method: :get
 - @users.each do |user|
   = render partial: 'edit_user_partial', locals: { user: user }
 
