@@ -12,9 +12,9 @@
       tbody
         - @user.files.each do |document|
           tr
-            td = check_box_tag (:filename) 
+            td = check_box_tag :filename, document.filename
             td = link_to document.filename, document
-    => button_to 'Elegir Documentos', postulations_path(@postulation), method: :post
+    /=> button_to 'Elegir Documentos', postulations_path(@postulation), method: :post
 
 br
 
