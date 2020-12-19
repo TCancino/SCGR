@@ -6,7 +6,7 @@
     table[class='table table-striped table-dark']
       thead
         tr
-          th
+          th = check_box_tag (:checkAll)
           th Nombre Documento
 
       tbody
@@ -37,3 +37,13 @@ br
   = f.submit 'Postular', class: 'btn btn-success'
 
 =< link_to 'Cancelar', post_path(@post)
+
+javascript:
+  $("#checkAll").click(function () {
+    $('input:checkbox').not(this).prop('checked', this.checked);
+  });
+  $("input[type=checkbox]").click(function() {
+    if (!$(this).prop("checked")) {
+      $("#checkAll").prop("checked", false);
+    }
+  });
