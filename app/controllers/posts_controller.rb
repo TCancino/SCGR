@@ -107,6 +107,13 @@ class PostsController < ApplicationController
     end
   end
 
+  def chose_docs
+    @post = Post.find(params[:id])
+    @documents = User.all
+    @user = current_user
+    @postulation = Postulation.new
+  end
+
   private
     def set_post
       @post = Post.find(params[:id])

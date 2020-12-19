@@ -52,7 +52,7 @@ p
               td = button_to @postulations[i], data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete, class: 'btn btn-danger' do
                     span.fa.fa-trash.danger[aria-hidden="true"]
     - if current_user.role == 0 or current_user.role == 3 #postulante o admin
-      => button_to 'Postular', edit_user_registration_path(current_user.id), method: :get
+      => button_to 'Postular', chose_docs_post_path(@post), method: :get
 
 - @postulations.each do |postulation|
   = render partial: 'edit_postulation_partial', locals: { postulation: postulation }
