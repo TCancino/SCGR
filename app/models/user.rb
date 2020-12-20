@@ -29,6 +29,10 @@ class User < ApplicationRecord
   end
 
   def full_name
-    return first_name + " " + last_name
+    "#{first_name} #{last_name}"
+  end
+
+  def send_state_postulation
+    UserMailer.send_state_postulation_message(self).deliver
   end
 end
