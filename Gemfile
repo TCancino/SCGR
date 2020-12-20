@@ -27,6 +27,7 @@ gem 'jquery-rails'
 gem 'font_awesome5_rails'
 gem 'mini_racer'
 gem 'devise'
+gem 'mjml-rails'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
