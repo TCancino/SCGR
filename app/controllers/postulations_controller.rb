@@ -1,14 +1,10 @@
 class PostulationsController < ApplicationController
   before_action :set_postulation, only: [:show, :edit, :update, :destroy]
 
-  # GET /postulations
-  # GET /postulations.json
   def index
     @postulations = Postulation.all
   end
 
-  # GET /postulations/1
-  # GET /postulations/1.json
   def show
     @postulation = Postulation.find(params[:id])
     @aplicant = User.find(@postulation.user_id)
@@ -32,17 +28,13 @@ class PostulationsController < ApplicationController
       end
   end
 
-  # GET /postulations/new
   def new
     @postulation = Postulation.new
   end
 
-  # GET /postulations/1/edit
   def edit
   end
 
-  # POST /postulations
-  # POST /postulations.json
   def create
     #postulation_params
     @postulation = Postulation.new(postulation_state_id: 1) #1-> No Revisado
@@ -58,14 +50,14 @@ class PostulationsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /postulations/1
-  # PATCH/PUT /postulations/1.json
   def update
     @post = Post.find(@postulation.post_id)
     respond_to do |format|
       if @postulation.update(postulation_params)
-        format.html { redirect_to @post, notice: 'Postulation was successfully updated.' }
+        format.html { redirect_to @post, notice: 'La postulación se actualizó con éxito.' }
         format.json { render :show, status: :ok, location: @post }
+        user_mail = User.where(id: params[:id])
+        @postulation.postulation_state_message(user_mail)
       else
         format.html { render :edit }
         format.json { render json: @postulation.errors, status: :unprocessable_entity }

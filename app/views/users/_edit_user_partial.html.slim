@@ -27,7 +27,7 @@ div[id="editUser#{user.id}" class="modal fade" role="dialog"]
           .input-group-prepend[style="width: 100%"]
             span.input-group-text[style="width: 100%"]
               | DV:
-          = f.text_field :dv, class: 'form-control'
+          = f.text_field :dv, class: 'form-control', maxlength: 1, pattern: '[k0-9]{0,1}'
         .input-group
           .input-group-prepend[style="width: 100%"]
             span.input-group-text[style="width: 100%"]
