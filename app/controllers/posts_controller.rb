@@ -36,7 +36,12 @@ class PostsController < ApplicationController
     @client = User.find(@post.user_id).full_name()
     post_state = @post.post_state_id
     @state = PostState.find(post_state)
-    postulations = Postulation.all
+    #debugger
+    if params[:state_filter].present?
+      postulations = Postulation.where(postulation_state_id: params[:state_filter])
+    else
+      postulations = Postulation.all
+    end
     @postulations = []
     @users = []
     @postulations_states = []
@@ -126,7 +131,8 @@ class PostsController < ApplicationController
         :id,
         :post_state_id,
         :vacancies,
-        :user_id
+        :user_id,
+        :state_filter
       )
     end
 end
