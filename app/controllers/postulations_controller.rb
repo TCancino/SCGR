@@ -57,8 +57,8 @@ class PostulationsController < ApplicationController
       if @postulation.update(postulation_params)
         format.html { redirect_to @post, notice: 'La postulación se actualizó con éxito.' }
         format.json { render :show, status: :ok, location: @post }
-        #user_mail = User.where(id: params[:id])
-        #@postulation.postulation_state_message(user_mail)
+        user_mail = User.find_by(id: params[:id])
+        @postulation.postulation_state_message(user_mail)
       else
         format.html { render :edit }
         format.json { render json: @postulation.errors, status: :unprocessable_entity }
