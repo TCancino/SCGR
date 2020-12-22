@@ -24,7 +24,8 @@
             td = @users[i].id
             td = @users[i].full_name()
             td = @users[i].email
-            td
+            td = @users[i].email
+            td = @roles[i]
               - if @users[i].rut.present? &&  @users[i].dv.present?
                 = number_with_delimiter(@users[i].rut, delimiter: ".") + '-' + @users[i].dv
             td
