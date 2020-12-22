@@ -53,11 +53,12 @@ class PostulationsController < ApplicationController
 
   def update
     @post = Post.find(@postulation.post_id)
+
     respond_to do |format|
       if @postulation.update(postulation_params)
         format.html { redirect_to @post, notice: 'La postulación se actualizó con éxito.' }
         format.json { render :show, status: :ok, location: @post }
-        user_mail = User.find_by(id: params[:id])
+        user_mail = User.find(postulation_params[:user_id])
         state = PostulationState.find_by(id: params[:postulation][:postulation_state_id]).name
         @postulation.postulation_state_message(user_mail, state)
       else
