@@ -32,7 +32,7 @@
             Gracias por postular a la oferta de Trabajo en <b>SCGR</b>
 						 <ul>
               <li>
-               Hola <%= @name %> El estado final de tu postulación es: <b>Admisible</b>.
+               Hola <%= @name %> El estado final de tu postulación es: <b><%= @state %></b>.
               </li>
             </ul>
 
