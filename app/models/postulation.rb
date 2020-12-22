@@ -4,7 +4,7 @@ class Postulation < ApplicationRecord
   belongs_to :postulation_state
   belongs_to :user
 
-  def postulation_state_message(user_mail)
-    PostulationMailer.postulation_state_message(user_mail).deliver_now
+  def postulation_state_message(user_mail, state)
+    PostulationMailer.postulation_state_message(user_mail, state).deliver_now
   end
 end

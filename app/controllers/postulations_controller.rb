@@ -58,7 +58,8 @@ class PostulationsController < ApplicationController
         format.html { redirect_to @post, notice: 'La postulación se actualizó con éxito.' }
         format.json { render :show, status: :ok, location: @post }
         user_mail = User.find_by(id: params[:id])
-        @postulation.postulation_state_message(user_mail)
+        state = PostulationState.find_by(id: params[:postulation][:postulation_state_id]).name
+        @postulation.postulation_state_message(user_mail, state)
       else
         format.html { render :edit }
         format.json { render json: @postulation.errors, status: :unprocessable_entity }
@@ -66,8 +67,6 @@ class PostulationsController < ApplicationController
     end
   end
 
-  # DELETE /postulations/1
-  # DELETE /postulations/1.json
   def destroy
     post = Post.find(@postulation.post_id)
     @postulation.delete
