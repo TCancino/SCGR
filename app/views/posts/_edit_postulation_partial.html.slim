@@ -6,6 +6,7 @@ div[id="editPostulation#{postulation.id}" class="modal fade" role="dialog"]
         button.close data-dismiss="modal" type="button"
           |&times;
       = form_for postulation do |f|
+        = f.hidden_field :user_id, :value => user_id
         .input-group
           .input-group-prepend[style="width: 100%"]
             span.input-group-text[style="width: 100%"]

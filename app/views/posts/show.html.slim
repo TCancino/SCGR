@@ -37,7 +37,9 @@ p
       thead
         tr
           th[scope="col"]
-            |  Código 
+            |  Código Postulación
+          th[scope="col"]
+            |  Código Postulante
           th[scope="col"]
             |  Postulante 
           th[scope="col"]
@@ -50,6 +52,10 @@ p
       tbody
         - for i in (0..@how_many-1)
           tr
+            -if current_user.role == 3 or current_user.role == 1
+              td = @postulations[i].id
+            -else
+              td = i+1
             td = @users[i].id
             td = @users[i].full_name()
             td = @postulations_states[i]
@@ -66,7 +72,7 @@ p
         => button_to 'Postular', chose_docs_post_path(@post), method: :get
 
 - @postulations.each do |postulation|
-  = render partial: 'edit_postulation_partial', locals: { postulation: postulation }
+  = render partial: 'edit_postulation_partial', locals: { postulation: postulation, user_id: postulation.user_id }
 
 br
 
