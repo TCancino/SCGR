@@ -37,12 +37,13 @@ class PostulationsController < ApplicationController
 
   def create
     #postulation_params
-    @postulation = Postulation.new(postulation_state_id: 1) #1-> No Revisado
+    @postulation = Postulation.new(postulation_params) #1-> No Revisado
+    @post = Post.find(postulation_params[:post_id])
 
     respond_to do |format|
       if @postulation.save
-        format.html { redirect_to @postulation, notice: 'Postulation was successfully created.' }
-        format.json { render :show, status: :created, location: @postulation }
+        format.html { redirect_to @post, notice: 'Postulation was successfully created.' }
+        format.json { render :show, status: :created, location: @post }
       else
         format.html { render :new }
         format.json { render json: @postulation.errors, status: :unprocessable_entity }
@@ -68,9 +69,10 @@ class PostulationsController < ApplicationController
   # DELETE /postulations/1
   # DELETE /postulations/1.json
   def destroy
-    @postulation.destroy
+    post = Post.find(@postulation.post_id)
+    @postulation.delete
     respond_to do |format|
-      format.html { redirect_to postulations_url, notice: 'Postulation was successfully destroyed.' }
+      format.html { redirect_to post, notice: 'Postulation was successfully destroyed.' }
       format.json { head :no_content }
     end
   end

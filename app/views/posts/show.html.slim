@@ -18,13 +18,14 @@ p
 p
   strong Cantidad de Postulantes:
   = @how_many
-.card.shadow.mb-4
-  =form_with url: post_path, local: true, method: :get, class: 'd-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search' do |form|
-        .input-group
-          =form.select :state_filter, options_for_select(PostulationState.all.map {|ct| [ct.name, ct.id]}.sort), {:include_blank => 'Estado de Postulación', :class => 'form-control bg-white border-0 small', name: 'postulation[state]' }
-          = button_tag(type: 'submit', class: 'btn btn-primary display: inline-block;') do
-            div[class="display: inline-block;"]
-              span.fa.fa-filter[aria-hidden="true" class='ml-3 mr-1']
+-if current_user == 3 or current_user == 1
+  .card.shadow.mb-4
+    =form_with url: post_path, local: true, method: :get, class: 'd-none d-sm-inline-block form-inline mr-auto my-2 my-md-0 mw-100 navbar-search' do |form|
+          .input-group
+            =form.select :state_filter, options_for_select(PostulationState.all.map {|ct| [ct.name, ct.id]}.sort), {:include_blank => 'Estado de Postulación', :class => 'form-control bg-white border-0 small', name: 'postulation[state]' }
+            = button_tag(type: 'submit', class: 'btn btn-primary display: inline-block;') do
+              div[class="display: inline-block;"]
+                span.fa.fa-filter[aria-hidden="true" class='ml-3 mr-1']
 .card.shadow.mb-4
   .card-header.py-3.d-flex.flex-row.align-items-center.justify-content-between
     h3.m-0.font-weight-bold.text-primary
@@ -34,11 +35,11 @@ p
       thead
         tr
           th[scope="col"]
-            |  Código
+            |  Código 
           th[scope="col"]
-            |  Postulante
+            |  Postulante 
           th[scope="col"]
-            |  Estado de Postulación
+            |  Estado de Postulación 
           - if current_user.role == 3 or current_user.role == 1
             th[scope="col"]
             th[scope="col"]
@@ -58,7 +59,8 @@ p
               td = button_to @postulations[i], data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete, class: 'btn btn-danger' do
                     span.fa.fa-trash.danger[aria-hidden="true"]
     - if current_user.role == 0 or current_user.role == 3 #postulante o admin
-      => button_to 'Postular', chose_docs_post_path(@post), method: :get
+      - if current_user.id != @postulations[i].user_id
+        => button_to 'Postular', chose_docs_post_path(@post), method: :get
 
 - @postulations.each do |postulation|
   = render partial: 'edit_postulation_partial', locals: { postulation: postulation }
