@@ -7,16 +7,16 @@ p
   strong Cliente: 
   = @client
 p
-  strong Requerimientos:
+  strong Requerimientos: 
   = @post.requirements
 p
-  strong Vacantes:
+  strong Vacantes: 
   = @post.vacancies
 p
-  strong Estado:
+  strong Estado: 
   = @state.name
 p
-  strong Cantidad de Postulantes:
+  strong Cantidad de Postulantes: 
   = @how_many
 -if current_user == 3 or current_user == 1
   .card.shadow.mb-4
@@ -59,7 +59,8 @@ p
               td = button_to @postulations[i], data: { confirm: '¿Estas seguro que deseas eliminar la Oferta?' }, method: :delete, class: 'btn btn-danger' do
                     span.fa.fa-trash.danger[aria-hidden="true"]
     - if current_user.role == 0 or current_user.role == 3 #postulante o admin
-      - if current_user.id != @postulations[i].user_id
+      -if @postulation_users_ids.include?(current_user.id)
+      -else
         => button_to 'Postular', chose_docs_post_path(@post), method: :get
 
 - @postulations.each do |postulation|

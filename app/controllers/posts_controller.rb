@@ -43,12 +43,14 @@ class PostsController < ApplicationController
       postulations = Postulation.all
     end
     @postulations = []
+    @postulation_users_ids = []
     @users = []
     @postulations_states = []
     @how_many = 0
     for postulation in postulations
       if postulation.post_id == id
         @postulations.append(postulation)
+        @postulation_users_ids.append(postulation.user_id)
         user = User.find(postulation.user_id)
         @users.append(user)
         postulation_state = PostulationState.find(postulation.postulation_state_id)
