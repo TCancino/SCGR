@@ -24,9 +24,10 @@
             td = @users[i].id
             td = @users[i].full_name()
             td = @users[i].email
-            td = @users[i].full_rut()
-            td = @roles[i]
-            td 
+            td
+              - if @users[i].rut.present? &&  @users[i].dv.present?
+                = number_with_delimiter(@users[i].rut, delimiter: ".") + '-' + @users[i].dv
+            td
               button type="button" class="btn btn-light" data-toggle="modal" data-target="#editUser#{@users[i].id}"
                 span.fa.fa-pen[aria-hidden="true"]
     /=> button_to 'Nuevo Usuario', new_user_registration_path, method: :get
